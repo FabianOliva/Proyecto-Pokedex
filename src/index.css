@@ -18,8 +18,11 @@ body {
   margin: 0;
   display: flex;
   font-family: "Poppins", sans-serif;
-  padding: 16px;
 }
+
+.main-container{
+  padding: 16px;
+} 
 
 button {
   cursor: pointer;
