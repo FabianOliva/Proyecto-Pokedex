@@ -8,7 +8,7 @@
     padding: 20px 0 24px 0;
     justify-content: space-between;
     align-items: center;
-    width: 88%;
+    width: 100%;
     color: #ffffff;
 }
 
@@ -29,7 +29,7 @@
 .pokemon-card-image{
     display: flex;
     flex-direction: row;
-    width: 88%;
+    width: 100%;
     justify-content: space-between;
     z-index: 1000;
     position: relative;
@@ -53,4 +53,25 @@
     top: 5px;
     right: 10px;
     z-index: 100;
+}
+
+.pokemon-card-arrow-left, .pokemon-card-arrow-right, .pokemon-card-name img{
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .header-bg-pokeball{
+        /* display: none; */
+        right: 15%;
+        width: 400px;
+        height: 400px;
+    }
+
+    .pokemon-card-image{
+        margin-top: 85px;
+    }
+
+    .pokemon-card-arrow-left, .pokemon-card-arrow-right{
+        width: 25px;
+    }
 }

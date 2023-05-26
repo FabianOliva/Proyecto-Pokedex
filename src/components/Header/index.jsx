@@ -6,7 +6,7 @@ import vectorSearch from '../../../public/Vectorsearch-icon.svg'
 
 const Header = () => {
   return (
-    <header>
+    <header className="Header">
       <div className="Header_Top">
         <img className="Header_Logo-img" src={pokeball} alt="Pokeball Icon" />
         <h1 className="Header_Logo-title">Pokédex</h1>

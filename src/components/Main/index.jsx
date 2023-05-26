@@ -1,15 +1,9 @@
 import "./index.css";
 import Main_Card from "../Main_Card";
 
-const Main = () => {
+const Main = ({pokemonData}) => {
   return (
     <main className="Main_Cont">
-      <Main_Card />
-      <Main_Card />
-      <Main_Card />
-      <Main_Card />
-      <Main_Card />
-      <Main_Card />
       <Main_Card />
     </main>
   );

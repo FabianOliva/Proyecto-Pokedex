@@ -15,12 +15,15 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
+  justify-content: center;
   font-family: "Poppins", sans-serif;
 }
 
 .main-container{
+  max-width: 800px;
+  margin: 0 auto;
   padding: 16px;
 } 
 

@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import "./App.css";
 import Main from "./components/Main";
 
 function App() {
+  const [pokemonData, setPokemonData] = useState([])
+
+  useEffect(()=>{
+    fetch('https://pokeapi.co/api/v2/pokemon')
+      .then(res => res.json())
+      .then(data => {
+        setPokemonData(data.results)
+      })
+      
+  },[])
   return (
     <div className="main-container">
       <Header />
-      <Main></Main>
+      <Main pokemonData={pokemonData}></Main>
     </div>
   );
 }
