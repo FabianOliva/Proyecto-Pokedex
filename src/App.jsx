@@ -4,16 +4,15 @@ import "./App.css";
 import Main from "./components/Main";
 
 function App() {
-  const [pokemonData, setPokemonData] = useState([])
+  const [pokemonData, setPokemonData] = useState([]);
 
-  useEffect(()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon')
-      .then(res => res.json())
-      .then(data => {
-        setPokemonData(data.results)
-      })
-      
-  },[])
+  useEffect(() => {
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=21&offset=0.")
+      .then((res) => res.json())
+      .then((data) => {
+        setPokemonData(data.results);
+      });
+  }, []);
   return (
     <div className="main-container">
       <Header />

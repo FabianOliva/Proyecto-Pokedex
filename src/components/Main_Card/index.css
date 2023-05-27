@@ -35,4 +35,11 @@
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
   color: white;
+  font-size: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.Main_Card-name::first-letter {
+  text-transform: uppercase;
 }

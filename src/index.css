@@ -3,6 +3,24 @@
 :root {
   background-color: #f7f7f7;
   width: 100%;
+  --steel: #b7b9d0;
+  --grass: #74cb48;
+  --bug: #a7b723;
+  --fire: #f57d31;
+  --electric: #f9cf30;
+  --water: #6493eb;
+  --ghost: #70559b;
+  --psychic: #fb5584;
+  --normal: #aaa67f;
+  --rock: #b69e31;
+  --ice: #9ad6df;
+  --dark: #75574c;
+  --fairy: #e69eac;
+  --fighting: #c12239;
+  --flying: #a891ec;
+  --poison: #a43e9e;
+  --ground: #dec16b;
+  --dragon: #7037ff;
 }
 
 #root {
@@ -21,13 +39,17 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.main-container{
+.main-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 16px;
-} 
+}
 
 button {
   cursor: pointer;
   transition: border-color 0.25s;
+}
+
+a {
+  text-decoration: none;
 }

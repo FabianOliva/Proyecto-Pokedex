@@ -1,29 +1,37 @@
-export {PokemonCardHeader}
-import './index.css'
-import Arrow from '../../../public/arrow-left.svg'
-import ArrowLeft from '../../../public/small-arrow-left.svg'
-import ArrowRight from '../../../public/small-arrow-right.svg'
-import Aron from '../../../public/aron.png'
-import BackgroundPokeball from '../../../public/bg-pokeball.png'
+export { PokemonCardHeader };
+import "./index.css";
+import Arrow from "../../../public/arrow-left.svg";
+import ArrowLeft from "../../../public/small-arrow-left.svg";
+import ArrowRight from "../../../public/small-arrow-right.svg";
+import BackgroundPokeball from "../../../public/bg-pokeball.png";
+import { Link } from "react-router-dom";
 
-
-const PokemonCardHeader = () => {
-
-    return(
-        <header className='pokemon-card-header'>
-            <div className='pokemon-card-title'>
-                <div className='pokemon-card-name'>
-                    <img src={Arrow} alt=""/>
-                    <h1>Aron</h1>
-                </div>
-                <p className='pokemon-card-number'>#304</p>
-            </div>
-            <div className='pokemon-card-image'>
-                <img src={ArrowLeft} alt="" className='pokemon-card-arrow-left'/>
-                <img src={Aron} alt="" className='pokemon-card-avatar'/>
-                <img src={ArrowRight} alt="" className='pokemon-card-arrow-right'/>
-            </div>
-            <img src={BackgroundPokeball} alt="" className='header-bg-pokeball'/>
-        </header>
-    )
-}
+const PokemonCardHeader = ({ pokemonData }) => {
+  return (
+    <header className="pokemon-card-header">
+      <div className="pokemon-card-title">
+        <div className="pokemon-card-name">
+          <Link to={"/"}>
+            <img src={Arrow} alt="" />
+          </Link>
+          <h1>{pokemonData.name}</h1>
+        </div>
+        <p className="pokemon-card-number">#{pokemonData.id.toString().padStart(3, "0")}</p>
+      </div>
+      <div className="pokemon-card-image">
+        <Link reloadDocument to={`/pokemon/${pokemonData.id - 1}`}>
+          <img src={ArrowLeft} alt="" className="pokemon-card-arrow-left" />
+        </Link>
+        <img
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`}
+          alt=""
+          className="pokemon-card-avatar"
+        />
+        <Link reloadDocument to={`/pokemon/${pokemonData.id + 1}`}>
+          <img src={ArrowRight} alt="" className="pokemon-card-arrow-right" />
+        </Link>
+      </div>
+      <img src={BackgroundPokeball} alt="" className="header-bg-pokeball" />
+    </header>
+  );
+};
