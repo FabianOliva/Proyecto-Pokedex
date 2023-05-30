@@ -19,15 +19,17 @@ const PokemonCardHeader = ({ pokemonData }) => {
         <p className="pokemon-card-number">#{pokemonData.id.toString().padStart(3, "0")}</p>
       </div>
       <div className="pokemon-card-image">
-        <Link reloadDocument to={`/pokemon/${pokemonData.id - 1}`}>
+        {pokemonData.id !== 1 && 
+        <Link to={`/pokemon/${pokemonData.id - 1}`}>
           <img src={ArrowLeft} alt="" className="pokemon-card-arrow-left" />
         </Link>
+}
         <img
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonData.id}.png`}
           alt=""
           className="pokemon-card-avatar"
         />
-        <Link reloadDocument to={`/pokemon/${pokemonData.id + 1}`}>
+        <Link to={`/pokemon/${pokemonData.id + 1}`} className="pokemon-card-arrow-right-container">
           <img src={ArrowRight} alt="" className="pokemon-card-arrow-right" />
         </Link>
       </div>

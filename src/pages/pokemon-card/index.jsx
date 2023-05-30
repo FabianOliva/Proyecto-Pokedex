@@ -4,11 +4,13 @@ import { PokemonCardHeader } from "../../components/Pokemon-card-header";
 import { PokemonCardMain } from "../../components/pokemon-card-main";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Loading from '../../../public/isloading.gif'
 
 const PokemonCard = () => {
   const { pokemonId } = useParams();
   const [pokemonData, setPokemonData] = useState();
   const [pokemonDesc, setPokemonDesc] = useState();
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
@@ -21,16 +23,24 @@ const PokemonCard = () => {
       .then((res) => res.json())
       .then((data) => {
         setPokemonDesc(data.flavor_text_entries[9].flavor_text);
+        setTimeout(() => {
+          setIsLoading(false);
+        },500)
       });
-  }, []);
+  }, [pokemonId]);
 
   return (
-    pokemonData,
-    pokemonDesc && (
+    <>
+    {isLoading ?
+      <div className="loading-gif-container">
+        <img src={Loading} alt="" className="loading-gif"/>
+      </div>
+      :
       <div className="pokemon-card-container" style={{ backgroundColor: `var(--${pokemonData.types[0].type.name})` }}>
         <PokemonCardHeader pokemonData={pokemonData} />
         <PokemonCardMain pokemonDesc={pokemonDesc} pokemonData={pokemonData} />
       </div>
-    )
-  );
+    }
+    </>
+  )
 };

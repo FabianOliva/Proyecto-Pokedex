@@ -1,8 +1,8 @@
 import "./index.css";
 
 import pokeball from '../../../public/Pokeball.png'
-import arrow from '../../../public/Arrow.svg'
 import vectorSearch from '../../../public/Vectorsearch-icon.svg'
+import { Sort } from "./sort";
 
 const Header = () => {
   return (
@@ -10,10 +10,7 @@ const Header = () => {
       <div className="Header_Top">
         <img className="Header_Logo-img" src={pokeball} alt="Pokeball Icon" />
         <h1 className="Header_Logo-title">Pokédex</h1>
-        <span className="Header_Sort">
-          #
-          <img src={arrow} alt="Arrow" />
-        </span>
+        <Sort/>
       </div>
       <div className="Header_Bottom">
         <input className="Header_Input" type="text" placeholder="Search" />

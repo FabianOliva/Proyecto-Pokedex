@@ -37,6 +37,7 @@ body {
   display: flex;
   justify-content: center;
   font-family: "Poppins", sans-serif;
+  height: 100vh;
 }
 
 .main-container {
@@ -52,4 +53,33 @@ button {
 
 a {
   text-decoration: none;
+}
+
+.loading{
+  background-color: #DC211E;
+}
+
+.loading-gif-container{
+  width: 100%;
+  background-color: #DC211E;
+  position: absolute;
+  left: 0;
+  height: 100vh;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-gif{
+  width: 600px;
+  height: 450px;
+}
+
+@media (max-width: 600px) {
+  
+  .loading-gif{
+    width: 100%;
+    height: auto;
+  }
 }
