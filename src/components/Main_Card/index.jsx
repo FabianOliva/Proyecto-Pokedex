@@ -1,6 +1,4 @@
 import "./index.css";
-
-import aron from "../../../public/aron.png";
 import { useEffect, useState } from "react";
 
 const Main_Card = ({ name, id, url }) => {

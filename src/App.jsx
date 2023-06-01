@@ -3,21 +3,43 @@ import Header from "./components/Header";
 import "./App.css";
 import Main from "./components/Main";
 
+const SORT_TYPE = {
+  "#-down": (a, b) => a.id - b.id,
+  "#-up": (a, b) => b.id - a.id,
+  "A-Z": (a, b) => a.name.localeCompare(b.name),
+  "Z-A": (a, b) => b.name.localeCompare(a.name),
+};
+
 function App() {
   const [pokemonData, setPokemonData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sortType, setSortType] = useState("#-down");
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=21&offset=0.")
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=30&offset=0.")
       .then((res) => res.json())
       .then((data) => {
-        setPokemonData(data.results);
+        setPokemonData(
+          data.results.map((el, I) => {
+            return { name: el.name, url: el.url, id: I + 1 };
+          })
+        );
         setTimeout(() => {
           setIsLoading(false);
         }, 500);
       });
-  }, [pokemonData]);
+  }, []);
+
+  useEffect(() => {
+    if (!pokemonData) return;
+    const filterSearch = (el) => {
+      return searchInput === "" ? true : el.name.toLowerCase().includes(searchInput.toLowerCase());
+    };
+    const newFilteredData = pokemonData.filter(filterSearch).sort(SORT_TYPE[sortType]);
+    setFilteredData(newFilteredData);
+  }, [sortType, pokemonData, searchInput]);
 
   const toggleChange = () => {
     if (sortType == "#-down") {
@@ -39,8 +61,13 @@ function App() {
         </div>
       ) : (
         <>
-          <Header toggleChange={toggleChange} sortType={sortType} />
-          <Main pokemonData={pokemonData} sortType={sortType}></Main>
+          <Header
+            toggleChange={toggleChange}
+            sortType={sortType}
+            setSearchInput={setSearchInput}
+            searchInput={searchInput}
+          />
+          <Main filteredData={filteredData}></Main>
         </>
       )}
     </div>

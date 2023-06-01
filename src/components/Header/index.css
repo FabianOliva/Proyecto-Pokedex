@@ -34,6 +34,7 @@
   height: 24px;
   border-radius: 6px;
   border: 1px solid #e0e0e0;
+  text-align: center;
 }
 
 .Header_Input::placeholder {
@@ -47,6 +48,10 @@
   left: 40%;
 }
 
+.Input_Active {
+  left: 2%;
+}
+
 .Header_Sort {
   display: flex;
   justify-content: right;
@@ -56,12 +61,12 @@
   margin-left: auto;
 }
 
-.Header_Sort_text{
+.Header_Sort_text {
   display: flex;
   flex-direction: column;
   line-height: 10px;
 }
 
-.arrow-rotate{
+.arrow-rotate {
   transform: rotate(180deg);
 }
