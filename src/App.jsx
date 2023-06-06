@@ -17,9 +17,11 @@ function App() {
   const [sortType, setSortType] = useState("#-down");
   const [searchInput, setSearchInput] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=30&offset=0.")
+    const Limit = page * 30;
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=${Limit}&offset=0`)
       .then((res) => res.json())
       .then((data) => {
         setPokemonData(
@@ -31,7 +33,7 @@ function App() {
           setIsLoading(false);
         }, 500);
       });
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     if (!pokemonData) return;
@@ -53,6 +55,22 @@ function App() {
       setSortType("#-down");
     }
   };
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight ||
+      isLoading
+    ) {
+      return;
+    }
+    setPage(page + 1);
+    console.log("hola");
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isLoading]);
 
   return (
     <div className="main-container">
