@@ -19,6 +19,7 @@ const PokemonCard = () => {
       .then((res) => res.json())
       .then((data) => {
         setPokemonData(data);
+        document.title = data.name + " | Pokedex";
       })
       .catch((error) => {
         setError(true);
