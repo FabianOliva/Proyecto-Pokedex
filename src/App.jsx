@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import "./App.css";
 import Main from "./components/Main";
+import "../public/isloading.gif";
 
 const SORT_TYPE = {
   "#-down": (a, b) => a.id - b.id,
@@ -57,7 +58,7 @@ function App() {
     <div className="main-container">
       {isLoading ? (
         <div className="loading-gif-container">
-          <img src="public/isloading.gif" alt="" className="loading-gif" />
+          <img src="../public/isloading.gif" alt="" className="loading-gif" />
         </div>
       ) : (
         <>
