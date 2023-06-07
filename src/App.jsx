@@ -57,14 +57,9 @@ function App() {
   };
 
   const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight ||
-      isLoading
-    ) {
-      return;
+    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+      setPage(prevPage => prevPage+1);
     }
-    setPage(page + 1);
-    console.log("holaaaa");
   };
 
   useEffect(() => {
