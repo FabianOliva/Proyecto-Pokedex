@@ -64,7 +64,7 @@ function App() {
       return;
     }
     setPage(page + 1);
-    console.log("hola");
+    console.log("holaaaa");
   };
 
   useEffect(() => {
