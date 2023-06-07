@@ -37,7 +37,7 @@ body {
   display: flex;
   justify-content: center;
   font-family: "Poppins", sans-serif;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .main-container {
