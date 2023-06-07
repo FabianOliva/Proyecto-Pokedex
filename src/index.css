@@ -38,6 +38,7 @@ body {
   justify-content: center;
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 .main-container {
@@ -55,13 +56,13 @@ a {
   text-decoration: none;
 }
 
-.loading{
-  background-color: #DC211E;
+.loading {
+  background-color: #dc211e;
 }
 
-.loading-gif-container{
+.loading-gif-container {
   width: 100%;
-  background-color: #DC211E;
+  background-color: #dc211e;
   position: absolute;
   left: 0;
   height: 100vh;
@@ -71,15 +72,44 @@ a {
   align-items: center;
 }
 
-.loading-gif{
+.loading-gif {
   width: 600px;
   height: 450px;
 }
 
+.scroll-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 5%;
+  background-color: #dc211e;
+  border: 0px;
+  right: 10%;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+}
+
+.scroll-button:hover {
+  background-color: #911614;
+}
+
+.scroll-button-img {
+  transform: rotate(90deg);
+}
+
 @media (max-width: 600px) {
-  
-  .loading-gif{
+  .loading-gif {
     width: 100%;
     height: auto;
+  }
+
+  .scroll-button {
+    width: 50px;
+    height: 50px;
   }
 }

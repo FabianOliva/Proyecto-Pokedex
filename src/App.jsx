@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import "./App.css";
 import Main from "./components/Main";
 import LoadingGif from "../public/isloading.gif";
+import ArrowLeft from "../public/arrow-left.svg";
 
 const SORT_TYPE = {
   "#-down": (a, b) => a.id - b.id,
@@ -18,6 +19,7 @@ function App() {
   const [searchInput, setSearchInput] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [page, setPage] = useState(0);
+  const [buttonState, setButtonState] = useState(false);
 
   useEffect(() => {
     // const Limit = page * 30;
@@ -28,10 +30,10 @@ function App() {
         const pokemons = data.results.map((el) => {
           const urlSplit = el.url.split("/");
           const id = urlSplit[urlSplit.length - 2];
-          return { name: el.name, url: el.url, id: id};
-        })
+          return { name: el.name, url: el.url, id: id };
+        });
 
-        const newPokemonData = [...pokemonData, ...pokemons]
+        const newPokemonData = [...pokemonData, ...pokemons];
         setPokemonData(newPokemonData);
 
         setTimeout(() => {
@@ -43,13 +45,9 @@ function App() {
   useEffect(() => {
     if (!pokemonData) return;
     const filterSearch = (el) => {
-      return searchInput === ""
-        ? true
-        : el.name.toLowerCase().includes(searchInput.toLowerCase());
+      return searchInput === "" ? true : el.name.toLowerCase().includes(searchInput.toLowerCase());
     };
-    const newFilteredData = pokemonData
-      .filter(filterSearch)
-      .sort(SORT_TYPE[sortType]);
+    const newFilteredData = pokemonData.filter(filterSearch).sort(SORT_TYPE[sortType]);
     setFilteredData(newFilteredData);
   }, [sortType, pokemonData, searchInput]);
 
@@ -66,11 +64,14 @@ function App() {
   };
 
   const handleScroll = () => {
-    if (
-      window.innerHeight + Math.round(window.scrollY) >=
-      document.body.offsetHeight
-    ) {
+    if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight) {
       setPage((prevPage) => prevPage + 1);
+    }
+
+    if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+      setButtonState(true);
+    } else {
+      setButtonState(false);
     }
   };
 
@@ -78,6 +79,15 @@ function App() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isLoading]);
+
+  const topFunction = () => {
+    // document.body.scrollTop = 0;
+    // document.documentElement.scrollTop = 0;
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="main-container">
@@ -94,6 +104,11 @@ function App() {
             searchInput={searchInput}
           />
           <Main filteredData={filteredData}></Main>
+          {buttonState && (
+            <button className="scroll-button" onClick={topFunction}>
+              <img src={ArrowLeft} alt=" Arrow" className="scroll-button-img" />
+            </button>
+          )}
         </>
       )}
     </div>
