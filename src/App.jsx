@@ -17,18 +17,23 @@ function App() {
   const [sortType, setSortType] = useState("#-down");
   const [searchInput, setSearchInput] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
-    const Limit = page * 30;
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=${Limit}&offset=0`)
+    // const Limit = page * 30;
+    const offset = page * 30;
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=30&offset=${offset}`)
       .then((res) => res.json())
       .then((data) => {
-        setPokemonData(
-          data.results.map((el, I) => {
-            return { name: el.name, url: el.url, id: I + 1 };
-          })
-        );
+        const pokemons = data.results.map((el) => {
+          const urlSplit = el.url.split("/");
+          const id = urlSplit[urlSplit.length - 2];
+          return { name: el.name, url: el.url, id: id};
+        })
+
+        const newPokemonData = [...pokemonData, ...pokemons]
+        setPokemonData(newPokemonData);
+
         setTimeout(() => {
           setIsLoading(false);
         }, 500);
@@ -38,9 +43,13 @@ function App() {
   useEffect(() => {
     if (!pokemonData) return;
     const filterSearch = (el) => {
-      return searchInput === "" ? true : el.name.toLowerCase().includes(searchInput.toLowerCase());
+      return searchInput === ""
+        ? true
+        : el.name.toLowerCase().includes(searchInput.toLowerCase());
     };
-    const newFilteredData = pokemonData.filter(filterSearch).sort(SORT_TYPE[sortType]);
+    const newFilteredData = pokemonData
+      .filter(filterSearch)
+      .sort(SORT_TYPE[sortType]);
     setFilteredData(newFilteredData);
   }, [sortType, pokemonData, searchInput]);
 
@@ -57,8 +66,11 @@ function App() {
   };
 
   const handleScroll = () => {
-    if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
-      setPage(prevPage => prevPage+1);
+    if (
+      window.innerHeight + Math.round(window.scrollY) >=
+      document.body.offsetHeight
+    ) {
+      setPage((prevPage) => prevPage + 1);
     }
   };
 

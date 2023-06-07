@@ -28,11 +28,19 @@ const PokemonCard = () => {
     fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`)
       .then((res) => res.json())
       .then((data) => {
-        setPokemonDesc(data.flavor_text_entries[9].flavor_text);
+        setPokemonDesc(
+          data.flavor_text_entries[9]?.flavor_text ||
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, iste sit consectetur cumque quia ab."
+        );
         setTimeout(() => {
           setIsLoading(false);
         }, 500);
-      });
+      })
+      .catch((err) =>
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500)
+      );
   }, [pokemonId]);
 
   if (error) {
@@ -46,9 +54,17 @@ const PokemonCard = () => {
           <img src={Loading} alt="" className="loading-gif" />
         </div>
       ) : (
-        <div className="pokemon-card-container" style={{ backgroundColor: `var(--${pokemonData.types[0].type.name})` }}>
+        <div
+          className="pokemon-card-container"
+          style={{
+            backgroundColor: `var(--${pokemonData.types[0].type.name})`,
+          }}
+        >
           <PokemonCardHeader pokemonData={pokemonData} />
-          <PokemonCardMain pokemonDesc={pokemonDesc} pokemonData={pokemonData} />
+          <PokemonCardMain
+            pokemonDesc={pokemonDesc}
+            pokemonData={pokemonData}
+          />
         </div>
       )}
     </>
