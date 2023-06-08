@@ -23,7 +23,6 @@ const PokemonCard = () => {
       .then((res) => res.json())
       .then((data) => {
         setPokemonData(data);
-        console.log(data.abilities);
         for (let i = 0; i < 2; i++) {
           if (data.abilities[i]) {
             fetch(data.abilities[i].ability.url)
@@ -70,7 +69,7 @@ const PokemonCard = () => {
 
   return (
     <>
-      {isLoading ? (
+      {isLoading || !pokemonData ? (
         <div className="loading-gif-container">
           <img src={Loading} alt="" className="loading-gif" />
         </div>
@@ -79,9 +78,14 @@ const PokemonCard = () => {
           className="pokemon-card-container"
           style={{
             backgroundColor: `var(--${pokemonData.types[0].type.name})`,
-          }}>
+          }}
+        >
           <PokemonCardHeader pokemonData={pokemonData} />
-          <PokemonCardMain pokemonDesc={pokemonDesc} pokemonData={pokemonData} moves={moves} />
+          <PokemonCardMain
+            pokemonDesc={pokemonDesc}
+            pokemonData={pokemonData}
+            moves={moves}
+          />
         </div>
       )}
     </>
