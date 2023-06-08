@@ -20,6 +20,24 @@ export const LANGUAGES = {
     weight: "Peso",
     height: "Altura",
     moves: "Movimientos",
+    normal: "Normal",
+    fire: "Fuego",
+    water: "Agua",
+    grass: "Planta",
+    electric: "Eléctrico",
+    ice: "Hielo",
+    fighting: "Lucha",
+    poison: "Veneno",
+    ground: "Tierra",
+    flying: "Volador",
+    psychic: "Psíquico",
+    bug: "Bicho",
+    rock: "Roca",
+    ghost: "Fantasma",
+    dark: "Siniestro",
+    dragon: "Dragón",
+    steel: "Acero",
+    fairy: "Hada",
   },
 
   EN: {
@@ -60,7 +78,6 @@ function App() {
   const [buttonState, setButtonState] = useState(false);
 
   useEffect(() => {
-    // const Limit = page * 30;
     const offset = page * 30;
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=30&offset=${offset}`)
       .then((res) => res.json())

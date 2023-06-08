@@ -1,7 +1,10 @@
 export { Sort };
 import arrow from "../../../public/Arrow.svg";
+import { useContext } from "react";
+import { LanguageContext } from "../../contexts/LanguageContext";
 
-const Sort = ({ toggleChange, sortType, language, toggleLanguage }) => {
+const Sort = ({ toggleChange, sortType }) => {
+  const { language, toggleLanguage } = useContext(LanguageContext);
   return (
     <>
       <span onClick={() => toggleLanguage()}>{language}</span>
