@@ -1,11 +1,10 @@
 export { Sort };
-import { useState } from "react";
 import arrow from "../../../public/Arrow.svg";
 
-const Sort = ({ toggleChange, sortType }) => {
+const Sort = ({ toggleChange, sortType, language, toggleLanguage }) => {
   return (
     <>
-      <span>En | Es</span>
+      <span onClick={() => toggleLanguage()}>{language}</span>
       <span className="Header_Sort" onClick={() => toggleChange()}>
         <div className="Header_Sort_text">
           {sortType == "#-down" || sortType == "#-up" ? (

@@ -3,6 +3,7 @@ import "./index.css";
 import Weight from "../../../public/Weight.svg";
 import Height from "../../../public/Height.svg";
 import { PokemonStat } from "../Pokemon-Stat";
+import { LANGUAGES } from "../../App";
 
 const PokemonCardMain = ({ pokemonData, pokemonDesc, language }) => {
   return (
@@ -19,7 +20,7 @@ const PokemonCardMain = ({ pokemonData, pokemonDesc, language }) => {
           )}
         </div>
         <h2 className="pokemon-card-subtitle" style={{ color: `var(--${pokemonData.types[0].type.name})` }}>
-          About
+          {LANGUAGES[language].about}
         </h2>
         <div className="pokemon-card-features">
           <div className="pokemon-card-features-item">
@@ -27,14 +28,14 @@ const PokemonCardMain = ({ pokemonData, pokemonDesc, language }) => {
               <img src={Weight} alt="" />
               <p>{pokemonData.weight} kg</p>
             </div>
-            <p className="pokemon-card-features-item-bottom">Weight</p>
+            <p className="pokemon-card-features-item-bottom">{LANGUAGES[language].weight}</p>
           </div>
           <div className="pokemon-card-features-item filter-center">
             <div className="pokemon-card-features-item-top">
               <img src={Height} alt="" />
               <p>{pokemonData.height} m</p>
             </div>
-            <p className="pokemon-card-features-item-bottom">Height</p>
+            <p className="pokemon-card-features-item-bottom">{LANGUAGES[language].height}</p>
           </div>
           <div className="pokemon-card-features-item">
             <div className="pokemon-card-features-item-top">

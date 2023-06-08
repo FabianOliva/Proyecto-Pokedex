@@ -12,6 +12,44 @@ const SORT_TYPE = {
   "Z-A": (a, b) => b.name.localeCompare(a.name),
 };
 
+export const LANGUAGES = {
+  ES: {
+    search: "Buscar",
+    about: "Acerca de",
+    baseStats: "Estadisticas base",
+    weight: "Peso",
+    height: "Altura",
+    moves: "Movimientos",
+  },
+
+  EN: {
+    search: "Search",
+    about: "About",
+    baseStats: "Base stats",
+    weight: "Weight",
+    height: "Height",
+    moves: "Moves",
+    normal: "Normal",
+    fire: "Fire",
+    water: "Water",
+    grass: "Grass",
+    electric: "Electric",
+    ice: "Ice",
+    fighting: "Fighting",
+    poison: "Poison",
+    ground: "Ground",
+    flying: "Flying",
+    psychic: "Psychic",
+    bug: "Bug",
+    rock: "Rock",
+    ghost: "Ghost",
+    dark: "Dark",
+    dragon: "Dragon",
+    steel: "Steel",
+    fairy: "Fairy",
+  },
+};
+
 function App() {
   const [pokemonData, setPokemonData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +58,7 @@ function App() {
   const [filteredData, setFilteredData] = useState([]);
   const [page, setPage] = useState(0);
   const [buttonState, setButtonState] = useState(false);
+  const [language, setLanguage] = useState("EN");
 
   useEffect(() => {
     // const Limit = page * 30;
@@ -63,6 +102,14 @@ function App() {
     }
   };
 
+  const toggleLanguage = () => {
+    if (language == "EN") {
+      setLanguage("ES");
+    } else {
+      setLanguage("EN");
+    }
+  };
+
   const handleScroll = () => {
     if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight) {
       setPage((prevPage) => prevPage + 1);
@@ -81,8 +128,6 @@ function App() {
   }, [isLoading]);
 
   const topFunction = () => {
-    // document.body.scrollTop = 0;
-    // document.documentElement.scrollTop = 0;
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -102,6 +147,8 @@ function App() {
             sortType={sortType}
             setSearchInput={setSearchInput}
             searchInput={searchInput}
+            language={language}
+            toggleLanguage={toggleLanguage}
           />
           <Main filteredData={filteredData}></Main>
           {buttonState && (
