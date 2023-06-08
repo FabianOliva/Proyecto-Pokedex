@@ -142,6 +142,8 @@ function App() {
     });
   };
 
+  document.title = "Pokedex";
+
   return (
     <div className="main-container">
       {isLoading ? (
