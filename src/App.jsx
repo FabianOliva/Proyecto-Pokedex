@@ -58,7 +58,6 @@ function App() {
   const [filteredData, setFilteredData] = useState([]);
   const [page, setPage] = useState(0);
   const [buttonState, setButtonState] = useState(false);
-  const [language, setLanguage] = useState("EN");
 
   useEffect(() => {
     // const Limit = page * 30;
@@ -102,14 +101,6 @@ function App() {
     }
   };
 
-  const toggleLanguage = () => {
-    if (language == "EN") {
-      setLanguage("ES");
-    } else {
-      setLanguage("EN");
-    }
-  };
-
   const handleScroll = () => {
     if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight) {
       setPage((prevPage) => prevPage + 1);
@@ -147,8 +138,6 @@ function App() {
             sortType={sortType}
             setSearchInput={setSearchInput}
             searchInput={searchInput}
-            language={language}
-            toggleLanguage={toggleLanguage}
           />
           <Main filteredData={filteredData}></Main>
           {buttonState && (

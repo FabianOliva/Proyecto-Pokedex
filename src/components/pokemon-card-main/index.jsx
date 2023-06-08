@@ -4,8 +4,11 @@ import Weight from "../../../public/Weight.svg";
 import Height from "../../../public/Height.svg";
 import { PokemonStat } from "../Pokemon-Stat";
 import { LANGUAGES } from "../../App";
+import { useContext, useState } from "react";
+import { LanguageContext } from "../../contexts/LanguageContext";
 
-const PokemonCardMain = ({ pokemonData, pokemonDesc, language }) => {
+const PokemonCardMain = ({ pokemonData, pokemonDesc }) => {
+  const { language } = useContext(LanguageContext)
   return (
     pokemonData && (
       <main className="pokemon-card-main">
