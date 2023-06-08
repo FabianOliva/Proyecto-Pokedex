@@ -2,8 +2,13 @@ import "./index.css";
 import pokeball from "../../../public/Pokeball.png";
 import vectorSearch from "../../../public/Vectorsearch-icon.svg";
 import { Sort } from "./sort";
+import { LANGUAGES } from "../../App";
+import { useContext } from "react";
+import { LanguageContext } from "../../contexts/LanguageContext";
 
 const Header = ({ toggleChange, sortType, setSearchInput, searchInput }) => {
+  const { language, toggleLanguage } = useContext(LanguageContext);
+
   return (
     <header className="Header">
       <div className="Header_Top">
@@ -15,7 +20,7 @@ const Header = ({ toggleChange, sortType, setSearchInput, searchInput }) => {
         <input
           className="Header_Input"
           type="text"
-          placeholder="Search"
+          placeholder={LANGUAGES[language].search}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />

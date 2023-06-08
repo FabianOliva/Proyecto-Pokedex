@@ -12,6 +12,62 @@ const SORT_TYPE = {
   "Z-A": (a, b) => b.name.localeCompare(a.name),
 };
 
+export const LANGUAGES = {
+  ES: {
+    search: "Buscar",
+    about: "Acerca de",
+    baseStats: "Estadisticas base",
+    weight: "Peso",
+    height: "Altura",
+    moves: "Movimientos",
+    normal: "Normal",
+    fire: "Fuego",
+    water: "Agua",
+    grass: "Planta",
+    electric: "Eléctrico",
+    ice: "Hielo",
+    fighting: "Lucha",
+    poison: "Veneno",
+    ground: "Tierra",
+    flying: "Volador",
+    psychic: "Psíquico",
+    bug: "Bicho",
+    rock: "Roca",
+    ghost: "Fantasma",
+    dark: "Siniestro",
+    dragon: "Dragón",
+    steel: "Acero",
+    fairy: "Hada",
+  },
+
+  EN: {
+    search: "Search",
+    about: "About",
+    baseStats: "Base stats",
+    weight: "Weight",
+    height: "Height",
+    moves: "Moves",
+    normal: "Normal",
+    fire: "Fire",
+    water: "Water",
+    grass: "Grass",
+    electric: "Electric",
+    ice: "Ice",
+    fighting: "Fighting",
+    poison: "Poison",
+    ground: "Ground",
+    flying: "Flying",
+    psychic: "Psychic",
+    bug: "Bug",
+    rock: "Rock",
+    ghost: "Ghost",
+    dark: "Dark",
+    dragon: "Dragon",
+    steel: "Steel",
+    fairy: "Fairy",
+  },
+};
+
 function App() {
   const [pokemonData, setPokemonData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +78,6 @@ function App() {
   const [buttonState, setButtonState] = useState(false);
 
   useEffect(() => {
-    // const Limit = page * 30;
     const offset = page * 30;
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=30&offset=${offset}`)
       .then((res) => res.json())
@@ -81,8 +136,6 @@ function App() {
   }, [isLoading]);
 
   const topFunction = () => {
-    // document.body.scrollTop = 0;
-    // document.documentElement.scrollTop = 0;
     window.scrollTo({
       top: 0,
       behavior: "smooth",

@@ -67,6 +67,11 @@
   text-transform: uppercase;
 }
 
+.pokemon-card-features-move {
+  flex-basis: 100%;
+  text-align: center;
+}
+
 .pokemon-card-features-item-top img {
   margin-right: 10px;
 }
