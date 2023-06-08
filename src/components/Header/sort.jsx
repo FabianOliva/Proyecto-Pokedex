@@ -6,8 +6,10 @@ import { LanguageContext } from "../../contexts/LanguageContext";
 const Sort = ({ toggleChange, sortType }) => {
   const { language, toggleLanguage } = useContext(LanguageContext);
   return (
-    <>
-      <span onClick={() => toggleLanguage()}>{language}</span>
+    <div className="sort-cont">
+      <span className="language-sort" onClick={() => toggleLanguage()}>
+        {language}
+      </span>
       <span className="Header_Sort" onClick={() => toggleChange()}>
         <div className="Header_Sort_text">
           {sortType == "#-down" || sortType == "#-up" ? (
@@ -21,6 +23,6 @@ const Sort = ({ toggleChange, sortType }) => {
         </div>
         <img src={arrow} alt="Arrow" className={sortType == "#-up" || sortType == "Z-A" ? "arrow-rotate" : ""} />
       </span>
-    </>
+    </div>
   );
 };
