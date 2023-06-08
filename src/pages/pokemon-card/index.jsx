@@ -13,6 +13,7 @@ const PokemonCard = () => {
   const [pokemonDesc, setPokemonDesc] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [language, setLanguage] = useState("EN");
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
@@ -58,13 +59,9 @@ const PokemonCard = () => {
           className="pokemon-card-container"
           style={{
             backgroundColor: `var(--${pokemonData.types[0].type.name})`,
-          }}
-        >
+          }}>
           <PokemonCardHeader pokemonData={pokemonData} />
-          <PokemonCardMain
-            pokemonDesc={pokemonDesc}
-            pokemonData={pokemonData}
-          />
+          <PokemonCardMain pokemonDesc={pokemonDesc} pokemonData={pokemonData} language={language} />
         </div>
       )}
     </>

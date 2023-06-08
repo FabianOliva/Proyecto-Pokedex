@@ -3,10 +3,8 @@ import "./index.css";
 import Weight from "../../../public/Weight.svg";
 import Height from "../../../public/Height.svg";
 import { PokemonStat } from "../Pokemon-Stat";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 
-const PokemonCardMain = ({ pokemonData, pokemonDesc }) => {
+const PokemonCardMain = ({ pokemonData, pokemonDesc, language }) => {
   return (
     pokemonData && (
       <main className="pokemon-card-main">
